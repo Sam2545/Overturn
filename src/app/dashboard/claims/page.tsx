@@ -8,7 +8,15 @@ import { createClient } from "@/lib/supabase/client";
 import type { Claim, ClaimStatus } from "@/types/database";
 import { claimRowToClaim } from "@/types/database";
 
-const COLUMNS = [
+type ColumnDef = {
+  id: ClaimStatus;
+  label: string;
+  color: string;
+  description?: string;
+  resultStyle?: "success" | "rejected";
+};
+
+const COLUMNS: ColumnDef[] = [
   { id: "drafted", label: "Submitted Claims", color: "bg-[#E6DCCD]/50 border-[#C18C5D]/30" },
   {
     id: "agent_calling",
@@ -17,8 +25,8 @@ const COLUMNS = [
     color: "bg-[#5D7052]/10 border-[#5D7052]/30",
   },
   { id: "in_review", label: "In review", color: "bg-[#F0EBE5] border-[#DED8CF]" },
-  { id: "overturned", label: "Result", color: "bg-emerald-50 border-emerald-200", resultStyle: "success" as const },
-] as const;
+  { id: "overturned", label: "Result", color: "bg-emerald-50 border-emerald-200", resultStyle: "success" },
+];
 
 const STATUS_IDS = COLUMNS.map((c) => c.id);
 
@@ -125,7 +133,7 @@ export default function ClaimsPage() {
                   >
                     {col.label}
                   </h2>
-                  {"description" in col && col.description && (
+                  {col.description && (
                     <p className="mt-1 text-sm text-[#78786C]">{col.description}</p>
                   )}
                 </div>
