@@ -1,0 +1,93 @@
+/* Fonts loaded via next/font in layout.tsx (DM Serif Display + DM Sans) */
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Organic / Natural Design System — Design Tokens (DNA)
+   --------------------------------------------------------------------------- */
+:root {
+  /* Colors — forest floor, clay, unbleached paper */
+  --background: #fdfcf8;
+  --foreground: #2c2c24;
+  --primary: #5d7052;
+  --primary-foreground: #f3f4f1;
+  --secondary: #c18c5d;
+  --secondary-foreground: #ffffff;
+  --accent: #e6dccd;
+  --accent-foreground: #4a4a40;
+  --muted: #f0ebe5;
+  --muted-foreground: #78786c;
+  --border: #ded8cf;
+  --destructive: #a85448;
+
+  /* Card / surface */
+  --card: #fefefa;
+
+  /* Shadows — soft, colored (moss / clay) */
+  --shadow-soft: 0 4px 20px -2px rgba(93, 112, 82, 0.15);
+  --shadow-float: 0 10px 40px -10px rgba(193, 140, 93, 0.2);
+  --shadow-soft-hover: 0 20px 40px -10px rgba(93, 112, 82, 0.15);
+  --shadow-button: 0 4px 20px -2px rgba(93, 112, 82, 0.15);
+  --shadow-button-hover: 0 6px 24px -4px rgba(93, 112, 82, 0.25);
+
+  /* Radius */
+  --radius: 1rem;       /* 16px - rounded-2xl */
+  --radius-lg: 1.5rem; /* 24px - rounded-3xl */
+  --radius-pill: 9999px;
+
+  /* Typography — set by next/font in layout.tsx */
+  --font-heading-family: var(--font-dm-serif-display), Georgia, serif;
+  --font-body-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+/* Tailwind v4 theme — map CSS variables to utilities */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-card: var(--card);
+
+  --font-heading: var(--font-heading-family);
+  --font-body: var(--font-body-family);
+
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius-lg);
+}
+
+/* ---------------------------------------------------------------------------
+   Grain / paper texture overlay (critical for organic feel)
+   Uses SVG turbulence for subtle noise, multiply blend, low opacity
+   --------------------------------------------------------------------------- */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* Headings use DM Serif Display */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), Georgia, serif;
+}
+
+.font-heading {
+  font-family: var(--font-heading), Georgia, serif;
+}
